@@ -24,9 +24,17 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Mudar para modo claro" : "Mudar para modo escuro"}
-      className={`rounded-full p-2 text-2xl transition hover:scale-110 ${className}`}
+      className={`group grid size-9 place-items-center rounded-full ${className}`}
     >
-      {dark ? "☀️" : "🌙"}
+      {/* Círculo meio cheio que roda meia volta ao trocar de tema */}
+      <svg
+        viewBox="0 0 20 20"
+        aria-hidden="true"
+        className={`size-[1.1rem] transition-transform duration-700 ease-out-expo group-hover:scale-110 ${dark ? "rotate-180" : ""}`}
+      >
+        <circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+        <path d="M10 1.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" />
+      </svg>
     </button>
   );
 }

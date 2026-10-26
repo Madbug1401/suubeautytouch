@@ -3,34 +3,88 @@
 /* Tema escuro controlado por <html data-theme="dark"> (ver ThemeScript) */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* ---------- Tokens da marca ---------- */
-@theme {
-  --color-pink-light: #ffdbdb;
-  --color-pink-medium: #fdc3d1;
-  --color-pink-main: #fda8bf;
-  --color-pink-deep: #d9658b;
-  --color-ink: #2b2b2b;
+/* ==========================================================================
+   Direção: "Barbie editorial"
+   Branco rosado, rosa Barbie em blocos de impacto, texto em berry (rosa-ameixa)
+   em vez de preto. Serifa de revista para manter o lado sofisticado.
+   ========================================================================== */
 
-  --font-title: var(--font-playfair), "Playfair Display", serif;
-  --font-body: var(--font-poppins), "Poppins", sans-serif;
+/* ---------- Tokens fixos ---------- */
+@theme {
+  /* Tons absolutos (não mudam com o tema) */
+  --color-ivory: oklch(0.99 0.006 350); /* branco com um sopro de rosa */
+  --color-barbie: oklch(0.57 0.21 357); /* rosa Barbie — branco por cima passa AA */
+  --color-berry: oklch(0.25 0.065 350); /* "preto" da marca: rosa-ameixa profundo */
+  --color-rose: oklch(0.88 0.065 355); /* rosa-algodão, para usar sobre fotografia */
+
+  /* Nomes antigos mantidos para o admin — remapeados para a nova paleta */
+  --color-ink: oklch(0.25 0.065 350);
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, sans-serif;
+  --font-title: var(--font-display);
+  --font-body: var(--font-sans);
+
+  /* Escala tipográfica */
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.22em;
+  --text-display: clamp(3.5rem, 10vw, 10rem);
+  --text-display--line-height: 0.88;
+  --text-display--letter-spacing: -0.035em;
+  --text-h1: clamp(3rem, 7.5vw, 7.5rem);
+  --text-h1--line-height: 0.92;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h2: clamp(2.25rem, 5vw, 5rem);
+  --text-h2--line-height: 0.98;
+  --text-h2--letter-spacing: -0.025em;
+  --text-lede: clamp(1.625rem, 3.2vw, 3.25rem);
+  --text-lede--line-height: 1.12;
+  --text-lede--letter-spacing: -0.015em;
+
+  /* Ritmo */
+  --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --spacing-section: clamp(6rem, 12vw, 12rem);
+  --spacing-header: 4.75rem;
+
+  /* Movimento (espelhado em lib/motion.ts) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-base: 500ms;
+  --duration-slow: 900ms;
+
+  --animate-marquee: marquee 48s linear infinite;
 }
 
-/* Cores semânticas que mudam com o tema */
+/* ---------- Cores semânticas (mudam com o tema) ---------- */
 :root {
-  --bg: #ffdbdb;
-  --surface: #fdc3d1;
-  --fg: #2b2b2b;
-  --muted: #6c757d;
-  --border: rgb(0 0 0 / 0.1);
-  --shadow: rgb(0 0 0 / 0.12);
+  --bg: oklch(0.99 0.006 350); /* branco rosado */
+  --surface: oklch(0.945 0.035 355); /* rosa bebé */
+  --fg: oklch(0.25 0.065 350); /* berry */
+  --muted: oklch(0.47 0.07 352);
+  --border: oklch(0.25 0.065 350 / 0.14);
+  --accent: oklch(0.57 0.21 357); /* rosa Barbie — "aja aqui" */
+  --accent-soft: oklch(0.89 0.065 355);
+  --on-accent: oklch(0.99 0.006 350);
+  --shadow: oklch(0.25 0.065 350 / 0.1);
+  --grain-opacity: 0.05;
+  color-scheme: light;
 }
 [data-theme="dark"] {
-  --bg: #1a1a1a;
-  --surface: #2d2d2d;
-  --fg: #e0e0e0;
-  --muted: #b0b0b0;
-  --border: rgb(255 255 255 / 0.1);
-  --shadow: rgb(0 0 0 / 0.3);
+  /* Desenhado, não invertido: noite berry, texto rosa-pálido, Barbie mais luminoso */
+  --bg: oklch(0.17 0.04 350);
+  --surface: oklch(0.22 0.05 350);
+  --fg: oklch(0.95 0.02 350);
+  --muted: oklch(0.75 0.05 352);
+  --border: oklch(0.95 0.02 350 / 0.13);
+  --accent: oklch(0.72 0.18 357);
+  --accent-soft: oklch(0.35 0.09 355);
+  --on-accent: oklch(0.17 0.04 350);
+  --shadow: oklch(0 0 0 / 0.35);
+  --grain-opacity: 0.05;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -40,50 +94,124 @@
   --color-muted: var(--muted);
   --color-line: var(--border);
   --color-shadow: var(--shadow);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+
+  /* Aliases antigos (admin) */
+  --color-pink-light: var(--surface);
+  --color-pink-medium: var(--border);
+  --color-pink-main: var(--accent);
+  --color-pink-deep: var(--accent);
 }
 
 @layer base {
-  body {
-    @apply bg-bg text-fg font-body leading-relaxed transition-colors duration-300;
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
-  h1, h2, h3 { @apply font-title; }
-  h1 { @apply text-4xl font-bold mb-6; }
-  h2 { @apply text-2xl font-semibold mb-4; }
-  :focus-visible { @apply outline-2 outline-offset-2 outline-pink-deep; }
+  body {
+    @apply bg-bg text-fg font-sans leading-[1.6] transition-colors duration-500;
+    /* lnum: a Cormorant usa algarismos oldstyle por omissão ("01" parece "O1") */
+    font-feature-settings: "ss01", "cv11", "lnum";
+  }
+  /* Grão de papel — material, não decoração */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1, h2, h3 {
+    @apply font-display font-normal;
+    text-wrap: balance;
+  }
+  /* Tamanhos base modestos (admin); o site público usa text-h1 / text-display explicitamente */
+  h1 { @apply text-5xl leading-none tracking-[-0.02em] mb-6; }
+  h2 { @apply text-3xl leading-tight mb-4; }
+  h3 { @apply text-3xl leading-tight; }
+  p { text-wrap: pretty; }
+  em { @apply font-display italic; }
+  ::selection { @apply bg-accent text-on-accent; }
+  :focus-visible { @apply outline-1 outline-offset-4 outline-accent; }
 }
 
 @layer components {
-  .container-page { @apply mx-auto max-w-6xl px-6 py-12; }
+  .container-page { @apply mx-auto max-w-[90rem] px-gutter py-16; }
+  .shell { @apply mx-auto w-full max-w-[90rem] px-gutter; }
+
+  /* Legenda editorial em caps espaçadas */
+  .eyebrow { @apply font-sans text-label font-semibold uppercase; }
 
   .btn {
-    @apply inline-block rounded-full bg-pink-main px-7 py-3 text-white font-medium
-      cursor-pointer transition hover:-translate-y-0.5 hover:bg-pink-deep
-      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+    @apply relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full
+      bg-accent px-7 py-3.5 font-sans text-sm font-semibold uppercase tracking-[0.14em] text-on-accent
+      cursor-pointer transition-colors duration-500 ease-out-expo
+      hover:bg-fg hover:text-bg
+      disabled:opacity-40 disabled:cursor-not-allowed;
   }
-  .btn-sm { @apply px-4 py-1.5 text-sm; }
-  .btn-success { @apply bg-green-600 hover:bg-green-700; }
-  .btn-warning { @apply bg-yellow-400 text-ink hover:bg-yellow-500; }
-  .btn-danger { @apply bg-red-600 hover:bg-red-700; }
-  .btn-outline { @apply bg-transparent text-fg border border-pink-main hover:bg-pink-light dark:hover:bg-surface; }
+  .btn-sm { @apply px-4 py-2 text-[0.65rem]; }
+  .btn-success { @apply bg-[oklch(0.5_0.1_150)] text-ivory hover:bg-[oklch(0.42_0.1_150)]; }
+  .btn-warning { @apply bg-[oklch(0.82_0.12_85)] text-berry hover:bg-[oklch(0.76_0.12_85)]; }
+  .btn-danger { @apply bg-[oklch(0.52_0.17_25)] text-ivory hover:bg-[oklch(0.45_0.17_25)]; }
+  .btn-outline { @apply bg-transparent text-fg ring-1 ring-fg/30 hover:bg-fg hover:text-bg; }
 
-  .card { @apply overflow-hidden rounded-2xl bg-surface shadow-[0_12px_30px_var(--shadow)]; }
+  .card { @apply overflow-hidden bg-surface; }
 
+  /* Campos em linha — como um formulário impresso */
   .field {
-    @apply w-full rounded-lg border border-pink-medium bg-bg px-3 py-2.5 text-fg
-      placeholder:text-muted dark:bg-surface dark:border-line;
+    @apply w-full rounded-none border-0 border-b border-fg/25 bg-transparent px-0 py-3 text-lg text-fg
+      transition-colors duration-300 placeholder:text-muted
+      hover:border-fg/50 focus:border-accent focus:outline-none focus-visible:outline-none;
   }
-  .label { @apply mb-1.5 block font-medium; }
+  select.field { @apply cursor-pointer appearance-none bg-no-repeat pr-8; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 12px) 55%, calc(100% - 7px) 55%; background-size: 5px 5px; }
+  textarea.field { @apply resize-y; }
+  .label { @apply mb-1 block font-sans text-label font-semibold uppercase text-muted; }
 
-  .msg { @apply my-4 rounded-lg p-4; }
-  .msg-success { @apply bg-green-100 text-green-800; }
-  .msg-error { @apply bg-red-100 text-red-800; }
-  .msg-info { @apply bg-pink-light text-ink; }
+  .msg { @apply my-4 border-l-2 px-5 py-4; }
+  .msg-success { @apply border-[oklch(0.55_0.1_150)] bg-[oklch(0.55_0.1_150/0.08)]; }
+  .msg-error { @apply border-[oklch(0.55_0.17_25)] bg-[oklch(0.55_0.17_25/0.08)]; }
+  .msg-info { @apply border-accent bg-accent-soft/40; }
+
+  /* Sublinhado que se desenha no hover */
+  .link-draw {
+    @apply relative inline-block;
+    background: linear-gradient(currentColor, currentColor) no-repeat 100% 100% / 0 1px;
+    transition: background-size var(--duration-slow) var(--ease-out-expo);
+  }
+  .link-draw:hover, .link-draw:focus-visible, .link-draw[aria-current="page"] { background-position: 0 100%; background-size: 100% 1px; }
+
+  /* Máscara para revelar texto por linha */
+  .mask { @apply block overflow-hidden pb-[0.08em]; }
 }
 
-@keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.fade-in { animation: fade-in 0.8s ease both; }
+/* ---------- Hero ---------- */
+.hero-scrim {
+  background:
+    linear-gradient(to top, oklch(0.22 0.075 350 / 0.88), oklch(0.22 0.075 350 / 0.35) 45%, transparent 70%),
+    linear-gradient(to bottom, oklch(0.22 0.075 350 / 0.55), transparent 30%),
+    radial-gradient(ellipse 35% 30% at 100% 12%, oklch(0.22 0.075 350 / 0.45), transparent),
+    linear-gradient(to right, oklch(0.22 0.075 350 / 0.45), transparent 65%);
+}
+/* Itálico dos títulos em rosa Barbie; sobre fotografia fica rosa-algodão, sobre rosa fica branco */
+:where(.text-h1, .text-h2, .text-display) em { color: var(--accent); }
+.on-photo :where(.text-h1, .text-h2, .text-display) em { color: var(--color-rose); }
+.on-pink :where(.text-h1, .text-h2, .text-display) em { color: inherit; }
+
+html.intro-seen [data-intro] { display: none; }
+/* Até o GSAP assumir o controlo, o texto do hero fica escondido (só com JS) */
+html.js [data-line] { transform: translateY(110%); }
+html.js [data-fade], html.js [data-chrome] { opacity: 0; }
+
+@keyframes marquee { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@keyframes fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fade-in var(--duration-slow) var(--ease-out-expo) both; }
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in { animation: none; }
-  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
 }

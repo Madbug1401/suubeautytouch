@@ -7,7 +7,7 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
   return (
     <button
       type="button"
-      className="btn btn-outline btn-sm"
+      className={`eyebrow link-draw pb-1 transition-colors ${ok ? "text-accent" : ""}`}
       aria-label={`Copiar ${label}`}
       onClick={async () => {
         try {
@@ -17,7 +17,7 @@ export function CopyButton({ value, label }: { value: string; label: string }) {
         } catch {}
       }}
     >
-      {ok ? "Copiado ✓" : "Copiar"}
+      <span aria-live="polite">{ok ? "Copiado" : "Copiar"}</span>
     </button>
   );
 }
