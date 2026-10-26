@@ -1,0 +1,12 @@
+{
+  "name": "su-beauty-touch",
+  "private": true,
+  "description": "Site e painel de gestão da Su Beauty Touch (maquilhagem profissional).",
+  "scripts": {
+    "deploy": "npx firebase-tools deploy",
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build",
+    "deploy:rules": "npx firebase-tools deploy --only firestore:rules,storage",
+    "deploy:static": "npx firebase-tools deploy --only hosting,firestore:rules,storage"
+  }
+}

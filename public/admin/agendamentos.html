@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Agendamentos · Admin Su Beauty Touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="module" src="../assets/js/admin/layout.js"></script>
+  <script type="module" src="../assets/js/admin/agendamentos.js"></script>
+</head>
+<body class="admin-body" data-page="agendamentos" data-protected>
+  <nav id="admin-navbar"></nav>
+
+  <main class="container fade-in">
+    <section class="admin-tab">
+      <div class="tab-header">
+        <h1>Gestão de Agendamentos</h1>
+        <div class="tab-actions">
+          <button class="btn secondary" id="btn-sync-ocupacao" type="button" title="Recria os horários ocupados a partir das marcações futuras">↻ Sincronizar horários</button>
+          <button class="btn primary" id="btn-novo-agendamento" type="button">+ Novo Agendamento</button>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="filtro-status">Status:</label>
+          <select id="filtro-status"></select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="admin-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>WhatsApp</th>
+              <th>Serviço</th>
+              <th>Cílios</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button id="btn-prev-page" type="button" disabled>Anterior</button>
+        <span id="page-info">Página 1 de 1</span>
+        <button id="btn-next-page" type="button" disabled>Próximo</button>
+      </div>
+
+      <p id="admin-mensagem" class="mensagem" role="status"></p>
+    </section>
+  </main>
+
+  <div id="modal-agendamento" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-agendamento-title">
+    <div class="modal-content">
+      <span class="close-modal" aria-label="Fechar">&times;</span>
+      <h2 id="modal-agendamento-title">Novo Agendamento</h2>
+
+      <form id="form-agendamento">
+        <input type="text" id="nome" placeholder="Nome completo" required>
+        <input type="tel" id="whatsapp" placeholder="WhatsApp" required>
+        <!-- Opções geradas a partir de assets/js/config.js -->
+        <select id="servico" required></select>
+        <select id="cilios"></select>
+        <input type="date" id="data" required>
+        <input type="time" id="hora" required>
+        <select id="status"></select>
+        <button type="submit" class="btn primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

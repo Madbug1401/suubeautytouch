@@ -1,0 +1,8 @@
+  [
+      {
+        "origin": ["https://su-beauty-touch.web.app", "http://localhost:XXXX"],
+        "method": ["GET", "PUT", "POST", "DELETE"],
+        "responseHeader": ["Content-Type", "Content-Disposition"],
+        "maxAgeSeconds": 3600
+      }
+    ]

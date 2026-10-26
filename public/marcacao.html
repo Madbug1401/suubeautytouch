@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento · Su Beauty Touch</title>
+  <meta name="description" content="Marque o seu atendimento de maquilhagem online: escolha o serviço, o dia e a hora disponível.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/theme.js"></script>
+  <script type="module" src="assets/js/layout.js"></script>
+  <script type="module" src="assets/js/pages/marcacao.js"></script>
+</head>
+<body data-page="marcacao">
+  <header id="site-header"></header>
+
+  <main class="container fade-in">
+    <h1>Agendamento</h1>
+
+    <form id="appointment-form">
+      <input type="text" id="nome" placeholder="Nome completo" autocomplete="name" minlength="2" maxlength="100" required>
+      <input type="tel" id="whatsapp" placeholder="WhatsApp" autocomplete="tel" minlength="7" maxlength="25" required>
+
+      <!-- Opções geradas a partir de assets/js/config.js -->
+      <select id="servico" required></select>
+      <select id="cilios"></select>
+
+      <input type="date" id="data" required>
+      <select id="hora" required>
+        <option value="">Hora disponível</option>
+      </select>
+
+      <textarea id="observacoes" placeholder="Observações" maxlength="500"></textarea>
+
+      <div id="aviso" class="aviso">
+        <p><strong>Aviso:</strong> Para confirmar a sua presença, é necessário efetuar o pagamento de uma taxa de marcação no valor de <strong>500$</strong>. Este valor será reembolsado em caso de cancelamento com <strong>48 horas</strong> de antecedência.</p>
+        <p>
+          • Apenas 1 acompanhante mulher<br>
+          • Pagamento em estúdio após a maquiagem<br>
+          • Taxa de atraso: 500$ após 15 minutos
+        </p>
+      </div>
+
+      <button type="submit" class="btn">Confirmar Agendamento</button>
+    </form>
+
+    <div id="loader" hidden>A carregar...</div>
+    <p id="mensagem" role="status"></p>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

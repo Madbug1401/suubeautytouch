@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// Su Beauty Touch — regras do Storage
+// Usa o Firestore para saber quem é admin (cross-service rules: o CLI pede permissão no 1.º deploy).
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
+    }
+    function isImage() { return request.resource.contentType.matches('image/.*'); }
+    function isVideo() { return request.resource.contentType.matches('video/.*'); }
+
+    // Imagens das categorias (máx. 10 MB)
+    match /imagens/{file} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isImage() && request.resource.size < 10 * 1024 * 1024;
+      allow delete: if isAdmin();
+    }
+
+    // Portfólio: imagens até 10 MB, vídeos até 100 MB
+    match /portfolio/{album}/{file} {
+      allow read: if true;
+      allow create, update: if isAdmin() && (
+        (isImage() && request.resource.size < 10 * 1024 * 1024) ||
+        (isVideo() && request.resource.size < 100 * 1024 * 1024)
+      );
+      allow delete: if isAdmin();
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

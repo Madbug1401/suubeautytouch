@@ -1,0 +1,32 @@
+{
+  "name": "su-beauty-touch-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Su Beauty Touch — site e painel admin (Next.js + Firebase).",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/playfair-display": "5.3.0",
+    "@fontsource/poppins": "5.3.0",
+    "firebase": "13.1.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.19.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

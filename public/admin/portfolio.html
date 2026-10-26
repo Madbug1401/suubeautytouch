@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Portfólio · Admin Su Beauty Touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="module" src="../assets/js/admin/layout.js"></script>
+  <script type="module" src="../assets/js/admin/portfolio.js"></script>
+</head>
+<body class="admin-body" data-page="portfolio" data-protected>
+  <nav id="admin-navbar"></nav>
+
+  <main class="container fade-in">
+    <section class="admin-tab">
+      <div class="tab-header">
+        <h1>Portfólio (Galeria)</h1>
+      </div>
+
+      <form id="upload-portfolio-form" class="form-upload">
+        <div class="form-group">
+          <label for="album-portfolio">Álbum</label>
+          <select id="album-portfolio" required></select>
+        </div>
+        <div class="form-group">
+          <label for="tipo-media">Tipo</label>
+          <select id="tipo-media" required>
+            <option value="">Selecione</option>
+            <option value="imagem">Imagem</option>
+            <option value="video">Vídeo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="media-portfolio">Arquivo</label>
+          <input type="file" id="media-portfolio" accept="image/*,video/*" required>
+        </div>
+        <button type="submit" class="btn primary">Enviar</button>
+      </form>
+
+      <p id="portfolio-mensagem" class="mensagem" role="status"></p>
+      <div id="portfolio-list" class="cards-grid"></div>
+    </section>
+  </main>
+</body>
+</html>

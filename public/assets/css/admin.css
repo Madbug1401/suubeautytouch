@@ -1,0 +1,212 @@
+/* =========================================================
+   Su Beauty Touch — painel admin (carregar depois de main.css)
+========================================================= */
+
+/* ---------- NAVBAR ---------- */
+.admin-navbar {
+  background: var(--bg-primary);
+  padding: 1.2rem 3rem;
+  box-shadow: 0 4px 12px var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 80px;
+}
+.admin-navbar .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.admin-navbar .theme-toggle { font-size: 1.3rem; }
+
+.nav-tabs {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+}
+.nav-tabs a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+.nav-tabs a:hover,
+.nav-tabs a.active { color: #fff; background: var(--pink-main); }
+
+.logout-btn {
+  background: var(--pink-main);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  transition: all 0.3s;
+}
+.logout-btn:hover { background: var(--pink-medium); transform: translateY(-2px); }
+
+/* ---------- CONTEÚDO ---------- */
+.admin-tab { margin-top: 1rem; }
+.admin-tab h1 { margin-bottom: 1.5rem; }
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.tab-header h1 { margin: 0; }
+
+.filters { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.filter-group { display: flex; align-items: center; gap: 0.5rem; }
+.filter-group select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--pink-medium); }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.pagination button {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--pink-main);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.pagination button:disabled { opacity: 0.4; cursor: default; }
+
+/* Formulários de upload */
+.form-upload {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+/* Formulário do modal */
+#form-agendamento { display: grid; gap: 0.8rem; margin-top: 1rem; }
+#form-agendamento input,
+#form-agendamento select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--pink-medium);
+  font-family: var(--font-body);
+}
+
+/* Grelha de cards (imagens / portfólio) */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.card-thumb { width: 100%; height: 200px; object-fit: cover; display: block; }
+.cards-grid .card:hover { transform: none; }
+.cards-grid .btn { padding: 8px 18px; font-size: 0.9rem; margin: 0.3rem; }
+
+/* ---------- TABELA ---------- */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+#admin-table { width: 100%; border-collapse: collapse; }
+#admin-table th,
+#admin-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--pink-light);
+}
+#admin-table th { background: var(--pink-main); color: #fff; font-weight: 600; }
+#admin-table tbody tr:hover { background-color: var(--bg-secondary); }
+#admin-table .obs { color: var(--text-secondary); font-style: italic; }
+
+.status-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+.status-pendente { background: #fff3cd; color: #856404; }
+.status-confirmado { background: #d4edda; color: #155724; }
+
+.acoes { white-space: nowrap; }
+.acoes button { margin: 0 4px; padding: 6px 12px; font-size: 0.9rem; }
+
+/* ---------- DASHBOARD ---------- */
+.admin-dashboard { text-align: center; padding-top: 4rem; }
+.admin-dashboard h1 { font-size: 2.8rem; letter-spacing: 1px; margin-bottom: 1rem; }
+.admin-dashboard > p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem; font-style: normal; }
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.card-link { text-decoration: none; color: inherit; }
+.card-link > div {
+  padding: 2.5rem 2rem;
+  background: var(--bg-secondary);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px var(--shadow);
+  transition: all 0.4s ease;
+}
+.card-link:hover > div {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(253, 168, 191, 0.2);
+}
+.card-icon { font-size: 3.5rem; margin-bottom: 1.2rem; display: block; transition: transform 0.4s ease; }
+.card-link:hover .card-icon { transform: scale(1.1); }
+.card-link h3 { font-size: 1.6rem; margin-bottom: 0.8rem; color: var(--pink-main); }
+.card-link p { font-size: 0.95rem; color: var(--text-secondary); font-style: normal; }
+
+/* ---------- LOGIN ---------- */
+.admin-login { max-width: 420px; text-align: center; }
+.admin-login form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+
+/* ---------- TEMA ESCURO ---------- */
+:root[data-theme="dark"] .admin-navbar { background: var(--bg-secondary); }
+:root[data-theme="dark"] .nav-tabs a.active,
+:root[data-theme="dark"] .nav-tabs a:hover { color: #fff; }
+:root[data-theme="dark"] #admin-table td { border-bottom-color: var(--border-color); }
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 768px) {
+  .admin-navbar { flex-direction: column; padding: 1.2rem; gap: 1rem; }
+  .nav-tabs { gap: 0.5rem; width: 100%; flex-wrap: wrap; }
+  .admin-dashboard h1 { font-size: 2rem; }
+  .cards-container { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ---------- AUTH ---------- */
+/* Páginas protegidas ficam escondidas até o admin/auth.js confirmar o login. */
+body[data-protected]:not(.auth-ok) > :not(script) { visibility: hidden; }
+
+.form-login { text-align: left; }
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-body);
+  justify-self: center;
+}
+.tab-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn.secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--pink-main); }
+.btn.secondary:hover { background: var(--pink-light); }

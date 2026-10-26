@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio · Su Beauty Touch</title>
+  <meta name="description" content="Galeria de trabalhos de maquilhagem: Soft Glam, Glow Glam, Full Glam e cílios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/theme.js"></script>
+  <script type="module" src="assets/js/layout.js"></script>
+  <script type="module" src="assets/js/pages/portfolio.js"></script>
+</head>
+<body data-page="portfolio">
+  <header id="site-header"></header>
+
+  <main class="container fade-in">
+    <h1>Portfólio</h1>
+    <p class="portfolio-intro">Veja alguns dos nossos trabalhos mais especiais. Cada detalhe pensado para realçar a sua beleza.</p>
+
+    <section class="portfolio-section">
+      <h2>💄 Soft Glam</h2>
+      <div class="gallery" data-album="soft-glam"></div>
+    </section>
+    <section class="portfolio-section">
+      <h2>✨ Glow Glam</h2>
+      <div class="gallery" data-album="glow-glam"></div>
+    </section>
+    <section class="portfolio-section">
+      <h2>👑 Full Glam</h2>
+      <div class="gallery" data-album="full-glam"></div>
+    </section>
+    <section class="portfolio-section">
+      <h2>👁️ Cílios</h2>
+      <h3>Cílios Natural</h3>
+      <div class="gallery" data-album="cilios-natural"></div>
+      <h3>Cílios Volumoso</h3>
+      <div class="gallery" data-album="cilios-volumoso"></div>
+    </section>
+  </main>
+
+  <!-- Modal de visualização (imagens e vídeos) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Visualização ampliada">
+    <button class="close" type="button" aria-label="Fechar">&times;</button>
+    <div id="modal-content"></div>
+  </div>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

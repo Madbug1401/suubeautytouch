@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Tema escuro controlado por <html data-theme="dark"> (ver ThemeScript) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------- Tokens da marca ---------- */
+@theme {
+  --color-pink-light: #ffdbdb;
+  --color-pink-medium: #fdc3d1;
+  --color-pink-main: #fda8bf;
+  --color-pink-deep: #d9658b;
+  --color-ink: #2b2b2b;
+
+  --font-title: var(--font-playfair), "Playfair Display", serif;
+  --font-body: var(--font-poppins), "Poppins", sans-serif;
+}
+
+/* Cores semânticas que mudam com o tema */
+:root {
+  --bg: #ffdbdb;
+  --surface: #fdc3d1;
+  --fg: #2b2b2b;
+  --muted: #6c757d;
+  --border: rgb(0 0 0 / 0.1);
+  --shadow: rgb(0 0 0 / 0.12);
+}
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --surface: #2d2d2d;
+  --fg: #e0e0e0;
+  --muted: #b0b0b0;
+  --border: rgb(255 255 255 / 0.1);
+  --shadow: rgb(0 0 0 / 0.3);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--border);
+  --color-shadow: var(--shadow);
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-fg font-body leading-relaxed transition-colors duration-300;
+  }
+  h1, h2, h3 { @apply font-title; }
+  h1 { @apply text-4xl font-bold mb-6; }
+  h2 { @apply text-2xl font-semibold mb-4; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-pink-deep; }
+}
+
+@layer components {
+  .container-page { @apply mx-auto max-w-6xl px-6 py-12; }
+
+  .btn {
+    @apply inline-block rounded-full bg-pink-main px-7 py-3 text-white font-medium
+      cursor-pointer transition hover:-translate-y-0.5 hover:bg-pink-deep
+      disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+  .btn-sm { @apply px-4 py-1.5 text-sm; }
+  .btn-success { @apply bg-green-600 hover:bg-green-700; }
+  .btn-warning { @apply bg-yellow-400 text-ink hover:bg-yellow-500; }
+  .btn-danger { @apply bg-red-600 hover:bg-red-700; }
+  .btn-outline { @apply bg-transparent text-fg border border-pink-main hover:bg-pink-light dark:hover:bg-surface; }
+
+  .card { @apply overflow-hidden rounded-2xl bg-surface shadow-[0_12px_30px_var(--shadow)]; }
+
+  .field {
+    @apply w-full rounded-lg border border-pink-medium bg-bg px-3 py-2.5 text-fg
+      placeholder:text-muted dark:bg-surface dark:border-line;
+  }
+  .label { @apply mb-1.5 block font-medium; }
+
+  .msg { @apply my-4 rounded-lg p-4; }
+  .msg-success { @apply bg-green-100 text-green-800; }
+  .msg-error { @apply bg-red-100 text-red-800; }
+  .msg-info { @apply bg-pink-light text-ink; }
+}
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fade-in 0.8s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { animation: none; }
+  *, *::before, *::after { transition: none !important; }
+}

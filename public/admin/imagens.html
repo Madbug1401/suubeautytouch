@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Imagens do Site · Admin Su Beauty Touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="module" src="../assets/js/admin/layout.js"></script>
+  <script type="module" src="../assets/js/admin/imagens.js"></script>
+</head>
+<body class="admin-body" data-page="imagens" data-protected>
+  <nav id="admin-navbar"></nav>
+
+  <main class="container fade-in">
+    <section class="admin-tab">
+      <div class="tab-header">
+        <h1>Imagens do Site</h1>
+      </div>
+
+      <form id="upload-imagem-form" class="form-upload">
+        <div class="form-group">
+          <label for="categoria-imagem">Categoria</label>
+          <select id="categoria-imagem" required></select>
+        </div>
+        <div class="form-group">
+          <label for="imagem-site">Imagem</label>
+          <input type="file" id="imagem-site" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn primary">Enviar Imagem</button>
+      </form>
+
+      <p id="imagens-mensagem" class="mensagem" role="status"></p>
+      <div id="imagens-list" class="cards-grid"></div>
+    </section>
+  </main>
+</body>
+</html>

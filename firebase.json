@@ -1,0 +1,111 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "hosting": {
+    "public": "public",
+    "cleanUrls": true,
+    "ignore": [
+      "**/.*"
+    ],
+    "redirects": [
+      {
+        "source": "/services",
+        "destination": "/servicos",
+        "type": 301
+      },
+      {
+        "source": "/services.html",
+        "destination": "/servicos",
+        "type": 301
+      },
+      {
+        "source": "/appointment",
+        "destination": "/marcacao",
+        "type": 301
+      },
+      {
+        "source": "/appointment.html",
+        "destination": "/marcacao",
+        "type": 301
+      },
+      {
+        "source": "/rules",
+        "destination": "/regras",
+        "type": 301
+      },
+      {
+        "source": "/rules.html",
+        "destination": "/regras",
+        "type": 301
+      },
+      {
+        "source": "/payment",
+        "destination": "/pagamento",
+        "type": 301
+      },
+      {
+        "source": "/payment.html",
+        "destination": "/pagamento",
+        "type": 301
+      },
+      {
+        "source": "/contact",
+        "destination": "/contacto",
+        "type": 301
+      },
+      {
+        "source": "/contact.html",
+        "destination": "/contacto",
+        "type": 301
+      },
+      {
+        "source": "/admin-login-9f3k2.html",
+        "destination": "/admin/login",
+        "type": 301
+      },
+      {
+        "source": "/admin-9f3k2.html",
+        "destination": "/admin/",
+        "type": 301
+      },
+      {
+        "source": "/admin-9f3k2/:path*",
+        "destination": "/admin/:path",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "/admin/**",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, nofollow"
+          }
+        ]
+      },
+      {
+        "source": "/assets/**/*.@(jpg|jpeg|png|webp|avif|mp4|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=2592000"
+          }
+        ]
+      },
+      {
+        "source": "/assets/**/*.@(css|js)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      }
+    ]
+  }
+}
